@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Submissions Tracking Interface - Today's submissions</title>
+	<link rel="stylesheet" type="text/css" href="./css/site-examples.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery.dataTables.min.css">
+	<style type="text/css" class="init">
+
+	</style>
+	<script type="text/javascript" language="javascript" src="./js/jquery-1.12.4.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="./js/jquery.dataTables.min.js">
+	</script>
+	<script type="text/javascript" class="init">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "order": [],
+        "ajax": '/today',
+				"pageLength": 25
+    } );
+} );
+
+	</script>
+</head>
+<body class="wide comments example">
+	<div class="fw-container">
+		<div class="fw-body">
+		<div class="content">
+		  <h1 class="page_title"><font color="ENV_COLOUR">ENVIRONMENT Submissions Tracking DB UI - Today</font></h1>
+		<div class="info">
+		  <p>Here are the ENVIRONMENT submissions updated during the last 24 hours.</p>
+		  <ul class="markdown">
+				<li><a href="/today.html">Today</a></li>
+		    <li><a href="/">ENVIRONMENT MAGE-TAB</a></li>
+		    <li><a
+		    href="/protocols.html">ENVIRONMENT
+		    Protocols (Last 2 years)</a></li>
+		    <li><a
+		    href="/fastq.html">ENVIRONMENT
+		    FASTQ validation results </a></li>
+		  </ul>
+		</div>
+		<table id="example" class="display dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+		  <thead>
+		    <tr role="row">
+		      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Accession: activate to sort column ascending" style="width: 90px;">Accession</th>
+		      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Directory: activate to sort column ascending" style="width: 70px;">Directory</th>
+		      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 250px;">Name</th>
+		      <th class="sorting" tabindex="0" aria-controls="example"
+			rowspan="1" colspan="1" aria-label="Checker score: activate to sort column ascending" style="width: 50px;">Checker score</th>
+			  <th class="sorting" tabindex="0" aria-controls="example"
+			  rowspan="1" colspan="1" aria-label="Atlas status: activate to sort column ascending" style="width: 50px;">Atlas status</th>
+			  <th class="sorting" tabindex="0" aria-controls="example"
+			  rowspan="1" colspan="1" aria-label="In curation: activate to sort column ascending" style="width: 50px;">In curation</th>
+			  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 50px;">Status</th>
+			  <th class="sorting" tabindex="0" aria-controls="example"
+			    rowspan="1" colspan="1" aria-label="Date submitted: activate to sort column ascending" style="width: 60px;">Submitted</th>
+			  <th class="sorting" tabindex="0" aria-controls="example"
+			  rowspan="1" colspan="1" aria-label="Date
+			  last processed: activate to sort column ascending" style="width: 60px;">Last processed</th>
+			  <th class="sorting" tabindex="0" aria-controls="example"
+			rowspan="1" colspan="1" aria-label="Curator: activate to sort column ascending" style="width: 50px;">Curator</th>
+			  <th class="sorting" tabindex="0" aria-controls="example"
+			rowspan="1" colspan="1" aria-label="Comment: activate to sort column ascending" style="width: 250px;">Comment</th>
+				<th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="File validation: activate to sort column ascending" style="width: 70px;">File validation</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+			  <th rowspan="1" colspan="1">Accession</th>
+			  <th rowspan="1" colspan="1">Directory</th>
+			  <th rowspan="1" colspan="1">Name</th>
+			  <th rowspan="1" colspan="1">Checker score</th>
+			  <th rowspan="1" colspan="1">Atlas status</th>
+			  <th rowspan="1" colspan="1">In curation</th>
+			  <th rowspan="1" colspan="1">Status</th>
+			  <th rowspan="1" colspan="1">Date submitted</th>
+			  <th rowspan="1" colspan="1">Date last processed</th>
+			  <th rowspan="1" colspan="1">Curator</th>
+			  <th rowspan="1" colspan="1">Comment</th>
+			  <th rowspan="1" colspan="1">File validation</th>
+			</tr>
+		</tfoot>
+	</table>
+<p>
+<div class="info">
+<h3>Atlas fail score codes (negative fail code means check not performed):</h3>
+<ul>
+<li>1 - data files are missing</li>
+<li>2 - array design is not in Atlas</li>
+<li>3 - experiment has a type not eligible for Atlas</li>
+<li>4 - two-channel experiment</li>
+<li>5 - does not have factor values</li>
+<li>6 - experiment doesn't have replicates for at least 1 factor type</li>
+<li>7 - factor type or characteristics types are not from controlled vocabulary</li>
+<li>8 - factor type or characteristics types are repeated</li>
+<li>9 - experiment is in a GEO superseries</li>
+<li>10 - <b>retired</b> experiment has too many (&gt;4) factor types</li>
+<li>11 - experiment has no factors at all</li>
+<li>12 - <b>retired</b> experiment has more than one source organism/species</li>
+<li>13 - units used are not in EFO</li>
+<li>14 - sequencing checks (presence of run accession, fastq URI and submitted file names (for non-GEO, non-ERAD submissions)) on files with an AE accession</li>
+<li>15 - <b>retired</b> experiment may have technical replicates, so not continuing to count replicates of factors</li>
+<li>16 - no label information for a microarray labeled extract</li>
+<li>17 - species mismatch between source material and ADF for at least one sample</li>
+<li>18 - Species in SDRF does not match NCBI taxonomy "scientific name".</li>
+<li>19 - Experiment has more than one organism in total.</li>
+<li>20 - Assay names or run accessions are not R-safe.</li>
+<li>21 - Technical replicate IDs do not conform to agreed convention (e.g. "group 1").</li>
+<li>22 - Experiment is present in failedCuration, failedQC, or minPvalGt0.5 directory.</li>
+<li>23 - Human disease experiment must have organism part and/or cell type and/or cell line.</li>
+<li>24 - Found technical replicate group(s) with only one assay/run.</li>
+<li>999 - Checking didn't happen at all (e.g. due to invalid MAGE-TAB).</li>
+</ul>
+</div>
+</div></div></div>
+</body></html>

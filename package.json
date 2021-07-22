@@ -1,0 +1,14 @@
+{
+  "name": "SubmissionsTrackingDBAPI",
+  "version": "0.1.0",
+  "dependencies": {
+    "express": "4.12.x",
+    "body-parser": "1.17.1",
+    "csvtojson": "0.5.14",
+    "dateformat": "2.0.0",
+    "mysql": "2.13.0",
+    "fs": "0.0.2",
+    "yamljs": "0.3.0",
+    "dotenv": "10.0.0"
+  }
+}

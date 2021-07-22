@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>DataTables example - HTML5 data-* attributes - cell data</title>
+	<link rel="stylesheet" type="text/css" href="./css/site-examples.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery.dataTables.min.css">
+	<style type="text/css" class="init">
+
+	</style>
+	<script type="text/javascript" language="javascript" src="./js/jquery-1.12.4.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="./js/jquery.dataTables.min.js">
+	</script>
+	<script type="text/javascript" class="init">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "order": [],
+        "ajax": '/protocols',
+        		"pageLength": 25
+    } );
+} );
+
+	</script>
+</head>
+<body class="wide comments example">
+	<div class="fw-container">
+		<div class="fw-body">
+		<div class="content">
+		  <h1 class="page_title"><font color="ENV_COLOUR">ENVIRONMENT Submissions Tracking DB UI - Protocols</font></h1>
+		<div class="info">
+		  <p>This page shows ArrayExpress protocol
+		  information, combined from AE2 DB and ST DB, and
+		  harmonised where possible to a common CV of protocol
+		  types.</p>
+		  <ul class="markdown">
+				<li><a href="/today.html">Today</a></li>
+		    <li><a href="/">ENVIRONMENT MAGE-TAB</a></li>
+		    <li><a
+		    href="/protocols.html">ENVIRONMENT
+		    Protocols (Last 2 years) </a></li>
+		    <li><a
+		    href="/fastq.html">ENVIRONMENT
+		    FASTQ validation results </a></li>
+		  </ul>
+		</div>
+		<table id="example" class="display dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+		  <thead>
+		    <tr role="row">
+		      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Experiment Accession: activate to sort column ascending" style="width: 90px;">Experiment Accession</th>
+		      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Protocol Accession: activate to sort column ascending" style="width: 90px;">Protocol Accession</th>
+		      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Last processed: activate to sort column ascending" style="width: 70px;">Last processed</th>
+		      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Type: activate to sort column ascending" style="width: 100px;">Type</th>
+		      <th class="sorting" tabindex="0" aria-controls="example"
+			rowspan="1" colspan="1" aria-label="User Accession: activate to sort column ascending" style="width: 90px;">User Accession</th>
+			<th class="sorting" tabindex="0" aria-controls="example"
+			  rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 100px;">Name</th>
+			<th class="sorting" tabindex="0" aria-controls="example"
+			  rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending" style="width: 300px;">Description</th>
+			  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Hardware: activate to sort column ascending" style="width: 100px;">Hardware</th>
+			  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Software: activate to sort column ascending" style="width: 100px;">Software</th>
+		            </tr>
+				</thead>
+			      <tfoot>
+				<tr>
+				  <th rowspan="1" colspan="1">Experiment Accession</th>
+				  <th rowspan="1" colspan="1">Protocol Accession</th>
+				  <th rowspan="1" colspan="1">Last processed</th>
+				  <th rowspan="1" colspan="1">Type</th>
+				  <th rowspan="1" colspan="1">User Accession</th>
+				  <th rowspan="1" colspan="1">Name</th>
+				  <th rowspan="1" colspan="1">Description</th>
+				  <th rowspan="1" colspan="1">Hardware</th>
+				  <th rowspan="1" colspan="1">Software</th>
+				</tr>
+			    </tfoot>
+			  </table>
+</div></div></div>
+  </body>
+</html>

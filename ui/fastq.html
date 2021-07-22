@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>DataTables example - HTML5 data-* attributes - cell data</title>
+	<link rel="stylesheet" type="text/css" href="./css/site-examples.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery.dataTables.min.css">
+	<style type="text/css" class="init">
+
+	</style>
+	<script type="text/javascript" language="javascript" src="./js/jquery-1.12.4.js">
+	</script>
+	<script type="text/javascript" language="javascript" src="./js/jquery.dataTables.min.js">
+	</script>
+	<script type="text/javascript" class="init">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "order": [],
+        "ajax": '/fastq_validation',
+        		"pageLength": 25
+    } );
+} );
+
+	</script>
+</head>
+<body class="wide comments example">
+	<div class="fw-container">
+		<div class="fw-body">
+		<div class="content">
+		  <h1 class="page_title"><font color="ENV_COLOUR">ENVIRONMENT Submissions Tracking DB
+		  UI - FASTQ Validation</font></h1>
+		<div class="info">
+		  <p>This page shows ENVIRONMENT FASTQ Validation results</p>
+		  <ul class="markdown">
+				<li><a
+		    href="/today.html">Today</a></li>
+		    <li><a href="/">ENVIRONMENT MAGE-TAB</a></li>
+		    <li><a
+		    href="/protocols.html">ENVIRONMENT
+		    Protocols (Last 2 years) </a></li>
+		    <li><a
+		    href="/fastq.html">ENVIRONMENT
+		    FASTQ validation results </a></li>
+		  </ul>
+		</div>
+		<table id="example" class="display dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+		  <thead>
+		    <tr role="row">
+		      <th class="sorting" tabindex="0"
+			aria-controls="example" rowspan="1"colspan="1"
+			aria-label="Annotare Submission ID:activate to
+			sort column ascending" style="width: 90px;">Annotare Submission ID</th>
+		      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Experiment Accession: activate to sort column ascending" style="width: 90px;">Experiment Accession</th>
+		      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Last processed: activate to sort column ascending" style="width: 70px;">Last processed</th>
+		      <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Library layout: activate to sort column ascending" style="width: 100px;">Library layout</th>
+		      <th class="sorting" tabindex="0" aria-controls="example"
+			rowspan="1" colspan="1" aria-label="File 1 Name: activate to sort column ascending"
+			style="width: 90px;">File 1 Name</th>
+			<th class="sorting" tabindex="0" aria-controls="example"
+			  rowspan="1" colspan="1" aria-label="File 2 Name: activate to sort column ascending" style="width: 100px;">File 2 Name</th>
+			<th class="sorting" tabindex="0" aria-controls="example"
+			  rowspan="1" colspan="1"
+			  aria-label="Number of reads: activate to sort
+			  column ascending" style="width:
+			  100px;">Number of reads</th>
+			  <th class="sorting" tabindex="0"
+			    aria-controls="example" rowspan="1"
+			    colspan="1" aria-label="Quality encoding: activate
+			    to sort column ascending" style="width:
+			    100px;">Quality encoding</th>
+			  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Avg. read length: activate to sort column ascending" style="width: 100px;">Avg. read length</th>
+			  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 100px;">Status</th>
+			  <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Comment: activate to sort column ascending" style="width: 300px;">Comment</th>
+			</tr>
+				</thead>
+			      <tfoot>
+				<tr>
+				  <th rowspan="1" colspan="1">Annotare Submission ID</th>
+				  <th rowspan="1" colspan="1">Experiment Accession</th>
+				  <th rowspan="1" colspan="1">Last processed</th>
+				  <th rowspan="1" colspan="1">Library layout</th>
+				  <th rowspan="1" colspan="1">File 1 Name</th>
+				  <th rowspan="1" colspan="1">File 2 Name</th>
+				<th rowspan="1" colspan="1">Number of reads</th>
+				<th rowspan="1" colspan="1">Quality encoding</th>
+				<th rowspan="1" colspan="1">Avg. read length</th>
+				<th rowspan="1" colspan="1">Status</th>
+				<th rowspan="1" colspan="1">Comment</th>
+				</tfoot>
+			  </table>
+</div></div></div>
+</body></html>
