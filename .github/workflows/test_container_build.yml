@@ -1,0 +1,16 @@
+name: Test Docker container build
+
+on: push
+
+jobs:
+  test:
+    name: Build Docker image
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build image
+        id: build-image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: ae-substracking-interface-test
+          dockerfiles: ./Dockerfile
