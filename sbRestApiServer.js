@@ -15,13 +15,13 @@ app.use(express.static('ui'));
 // Global variables
 // Column headings in TSV output - corresponding to experimentsDBQuery
 var experimentTSVFields =
-    ['accession','user','directory','name','checker_score','atlas_status','in_curation','status','software','date_submitted','date_last_processed', 'version', 'curator','comment', 'file_validation_status'];
+    ['accession','user','directory','name','checker_score','atlas_status','in_curation','status','software','date_submitted','date_last_processed', 'version', 'curator','comment', 'file_validation_status', 'nextflow_run_id'];
 
 var protocolsTSVFields =
     ['experiment_accession','protocol_accession','date_last_processed','type','user_accession','name','description','hardware','software'];
 
 var todayTSVFields =
-    ['accession', 'directory', 'name', 'checker_score', 'atlas_fail_score', 'in_curation', 'status', 'date_submitted', 'date_last_processed', 'curator', 'comment', 'file_validation_status'];
+    ['accession', 'directory', 'name', 'checker_score', 'atlas_fail_score', 'in_curation', 'status', 'date_submitted', 'date_last_processed', 'curator', 'comment', 'file_validation_status', 'nextflow_run_id'];
 
 var fastqValidationTSVFields =
     ['annotare_submission_id', 'date_last_processed', 'library_layout','annotare_file1_id', 'file1_name', 'annotare_file2_id','file2_name','status','comment'];
@@ -36,7 +36,7 @@ var experimentsDBQuery=
     "IF(e.in_curation=1,'yes','no') in_curation, e.status, e.software, " +
     "DATE_FORMAT(e.date_submitted, '%Y-%m-%d %H:%i') date_submitted, DATE_FORMAT(e.date_last_processed, '%Y-%m-%d %H:%i GMT') date_last_processed, " +
     "e.num_submissions version, " +
-    "e.curator, REPLACE(e.comment,'\n','') comment, e.file_validation_status " +
+    "e.curator, REPLACE(e.comment,'\n','') comment, e.file_validation_status, nextflow_run_id " +
     "FROM experiments e " +
     "join users u on (e.user_id = u.id) " +
     "WHERE (e.is_deleted=0 and experiment_type='MAGE-TAB') " +
@@ -66,7 +66,7 @@ var todayDBQuery =
     "SELECT accession, concat('MAGE-TAB_', id) directory, name, checker_score, atlas_fail_score, " +
     "IF(in_curation=1,'yes','no') in_curation, status," +
     "DATE_FORMAT(date_submitted, '%Y-%m-%d %H:%i') date_submitted, DATE_FORMAT(date_last_processed, '%Y-%m-%d %H:%i GMT') date_last_processed, " +
-    "curator, comment, file_validation_status " +
+    "curator, comment, file_validation_status, nextflow_run_id " +
     "FROM experiments " +
     "WHERE experiment_type='MAGE-TAB' AND date_last_processed >= NOW() - INTERVAL 1 DAY " +
     "ORDER BY date_last_processed desc";
@@ -129,7 +129,11 @@ function returnResults(res, err, results, format, tsvFields) {
 			// Note that dates in DB are always GMT - hence are incorrect during BST period - hence the adjustment below
 			var dateTimeInCurrentTimeZone = dateFormat(new Date(result[entry]),'yyyy-mm-dd HH:MM');
 			row.push(dateTimeInCurrentTimeZone);
-		    } else {
+		    } else if (entry === "nextflow_run_id" && result[entry] != null && result[entry] != undefined) {
+                var nextFlowRunURL = "https://cloud.seqera.io/orgs/aexpress/workspaces/aexpress_workspace/watch/" + result[entry];
+                var URLHTMLElelment = "<a href='" + nextFlowRunURL + "' target=\"_blank\">" + result[entry] + "</a>";
+                row.push(URLHTMLElelment);
+            } else {
 			row.push(val);
 		    }
 		});
