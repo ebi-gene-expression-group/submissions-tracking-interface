@@ -129,10 +129,14 @@ function returnResults(res, err, results, format, tsvFields) {
 			// Note that dates in DB are always GMT - hence are incorrect during BST period - hence the adjustment below
 			var dateTimeInCurrentTimeZone = dateFormat(new Date(result[entry]),'yyyy-mm-dd HH:MM');
 			row.push(dateTimeInCurrentTimeZone);
-		    } else if (entry === "nextflow_run_id" && result[entry] != null && result[entry] != undefined) {
-                var nextFlowRunURL = "https://cloud.seqera.io/orgs/aexpress/workspaces/aexpress_workspace/watch/" + result[entry];
-                var URLHTMLElelment = "<a href='" + nextFlowRunURL + "' target=\"_blank\">" + result[entry] + "</a>";
-                row.push(URLHTMLElelment);
+		    } else if (entry === "nextflow_run_id") {
+                if(result[entry] != null && result[entry] != undefined){
+                    var nextFlowRunURL = "https://cloud.seqera.io/orgs/aexpress/workspaces/aexpress_workspace/watch/" + result[entry];
+                    var URLHTMLElelment = "<a href='" + nextFlowRunURL + "' target=\"_blank\">" + result[entry] + "</a>";
+                    row.push(URLHTMLElelment);
+                }else {
+                    row.push("NA");
+                }
             } else {
 			row.push(val);
 		    }
