@@ -1,12 +1,12 @@
 // Based on https://github.com/sbalagop/neo/blob/master/nserver.js
-var express = require('express');
-var fs = require('fs');
+import express from 'express';
+import bodyParser from 'body-parser';
+import mysql from 'mysql';
+import { formatInTimeZone } from 'date-fns-tz';
+import yamljs from 'yamljs';
+import dotenv from 'dotenv';
+
 var app = express();
-var bodyParser = require('body-parser');
-var mysql = require('mysql');
-var dateFormat = require('dateformat');
-var yamljs = require('yamljs');
-const dotenv = require('dotenv');
 dotenv.config();
 
 // Serve static files in 'ui' subdirectory of the directory in which this server is being run (i.e. the Submissions Tracking DB Home page)
@@ -126,8 +126,7 @@ function returnResults(res, err, results, format, tsvFields) {
 		tsvFields.forEach(function(entry) {
                     var val = result[entry];
 		    if (entry == "date_last_processed") { // i.e. entry.startsWith("date")
-			// Note that dates in DB are always GMT - hence are incorrect during BST period - hence the adjustment below
-			var dateTimeInCurrentTimeZone = dateFormat(new Date(result[entry]),'yyyy-mm-dd HH:MM');
+                var dateTimeInCurrentTimeZone = formatInTimeZone(new Date(result[entry]), "Europe/London", 'yyyy-MM-dd HH:mm');
 			row.push(dateTimeInCurrentTimeZone);
 		    } else if (entry === "nextflow_run_id") {
                 if(result[entry] != null && result[entry] != undefined){
